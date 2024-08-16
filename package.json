@@ -12,9 +12,6 @@
     "typescript": "^5.3.3",
     "@arion/pipeline": "0.2.13"
   },
-  "publishConfig": {
-    "registry": "http://192.168.1.164/npm/"
-  },
   "devDependencies": {
     "@types/node": "^20.11.14"
   }
