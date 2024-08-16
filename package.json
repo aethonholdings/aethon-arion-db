@@ -1,0 +1,21 @@
+{
+  "name": "aethon-arion-db",
+  "version": "0.1",
+  "description": "The @arion project database TypeORM entity class definitions",
+  "scripts": {
+    "build": "cp package.json ./dist/ & tsc"
+  },
+  "author": "Konstantinos Dimitriou",
+  "license": "MIT",
+  "dependencies": {
+    "typeorm": "^0.3.20",
+    "typescript": "^5.3.3",
+    "@arion/pipeline": "0.2.13"
+  },
+  "publishConfig": {
+    "registry": "http://192.168.1.164/npm/"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.14"
+  }
+}

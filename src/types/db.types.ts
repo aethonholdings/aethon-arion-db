@@ -1,0 +1,1 @@
+export type StateType = "running" | "pending" | "completed" | "failed";
