@@ -2,7 +2,7 @@
 
 ## Description
 
-This package defines the TypeORM data storage classes used by the Arion server, as specified on the project's [homepage](https://arion.aethon.sg/our-tools/aethon-arion-db/).  The classes implement the modelling and mathematical objects described on the Arion [framework pages](https://arion.aethon.sg/our-framework/).
+This package defines the TypeORM data storage classes used by the Arion server, as specified on the project's [homepage](https://arion.aethon.sg/our-tools/aethon-arion-db/).  
 
 The Nest.js server implementation of the project uses this package for data retrieval and storage from the back end.
 
