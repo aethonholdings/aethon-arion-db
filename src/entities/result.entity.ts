@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { StateSpacePoint } from "./state-space-point.entity";
-import { ConfiguratorParamsDTO } from "@arion/pipeline";
+import { ConfiguratorParamsDTO } from "aethon-arion-pipeline";
 
 @Entity()
 export class Result extends BaseEntity{
