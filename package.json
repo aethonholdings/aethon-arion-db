@@ -1,7 +1,7 @@
 {
   "name": "aethon-arion-db",
   "version": "0.1.1",
-  "description": "The @arion project database TypeORM entity class definitions",
+  "description": "The Arion project database TypeORM entity class definitions",
   "scripts": {
     "build": "cp package.json ./dist/ & tsc"
   },
