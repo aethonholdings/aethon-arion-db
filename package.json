@@ -1,6 +1,6 @@
 {
   "name": "aethon-arion-db",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The Arion project database TypeORM entity class definitions",
   "repository": "github:aethonholdings/aethon-arion-db",
   "scripts": {
