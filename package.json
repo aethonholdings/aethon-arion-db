@@ -4,14 +4,14 @@
   "description": "The Arion project database TypeORM entity class definitions",
   "repository": "github:aethonholdings/aethon-arion-db",
   "scripts": {
-    "build": "cp package.json ./dist/ & tsc"
+    "build": "cp package.json README.md ./dist/ & tsc"
   },
   "author": "Konstantinos Dimitriou",
   "license": "MIT",
   "dependencies": {
     "typeorm": "^0.3.20",
     "typescript": "^5.3.3",
-    "aethon-arion-pipeline": "~0.1.0"
+    "aethon-arion-pipeline": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.14"
