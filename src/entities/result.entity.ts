@@ -4,11 +4,11 @@ import { StateSpacePoint } from "./state-space-point.entity";
 import { ConfiguratorParamsDTO } from "aethon-arion-pipeline";
 
 @Entity()
-export class Result extends BaseEntity{
+export class Result extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => SimConfig, (simConfig) => simConfig.id, {onDelete: "CASCADE"})
+    @ManyToOne(() => SimConfig, (simConfig) => simConfig.id, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simConfigId" })
     simConfig: SimConfig;
 
@@ -16,15 +16,15 @@ export class Result extends BaseEntity{
     @Index("SIMCONFIG")
     simConfigId: number;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     @Index("ORGCONFIG")
     orgConfigId: number;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     @Index("SIMSET")
     simSetId: number;
 
-    @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result, {onDelete: "CASCADE"})
+    @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result, { onDelete: "CASCADE" })
     stateSpace: StateSpacePoint[];
 
     @Column()
@@ -66,19 +66,17 @@ export class Result extends BaseEntity{
     @Column({ type: "float" })
     performance: number;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     agentCount: number;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     @Index("ORGCONFIGTYPE")
     orgConfigType: string;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     @Index("CONFIGURATORNAME")
     configuratorName: string;
 
     @Column({ type: "json" })
     configuratorParams: ConfiguratorParamsDTO;
-
 }
-

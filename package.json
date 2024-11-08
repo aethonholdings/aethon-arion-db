@@ -1,10 +1,13 @@
 {
   "name": "aethon-arion-db",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "The Arion project database TypeORM entity class definitions",
   "repository": "github:aethonholdings/aethon-arion-db",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "cp package.json README.md ./dist/ & tsc"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "author": "Konstantinos Dimitriou",
   "license": "MIT",

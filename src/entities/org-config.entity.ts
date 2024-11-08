@@ -48,7 +48,7 @@ export class OrgConfig extends BaseEntity {
     @Column({ type: "float" })
     incentiveIntensity: number;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     @Index("CONFIGURATORNAME")
     configuratorName: string;
 

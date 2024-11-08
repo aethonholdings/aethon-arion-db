@@ -10,21 +10,21 @@ export class SimSet extends BaseEntity {
     @OneToMany(() => SimConfig, (simConfig) => simConfig.simSet)
     simConfigs: SimConfig[];
 
-    @Column({type: "longtext", nullable: true})
+    @Column({ type: "longtext", nullable: true })
     description: string;
 
     @Column()
     type: string;
 
-    @Column({nullable: false, default: "pending"})
+    @Column({ nullable: false, default: "pending" })
     state: StateType;
 
-    @Column({nullable: false, default: 0})
+    @Column({ nullable: false, default: 0 })
     simConfigCount: number;
 
-    @Column({nullable: false, default: 0})
+    @Column({ nullable: false, default: 0 })
     completedRunCount: number;
 
-    @Column({nullable: false, default: 0})
+    @Column({ nullable: false, default: 0 })
     completedSimConfigCount: number;
 }

@@ -9,7 +9,7 @@ export class SimConfig extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => OrgConfig, (orgConfig) => orgConfig.id, {onDelete: "CASCADE"})
+    @ManyToOne(() => OrgConfig, (orgConfig) => orgConfig.id, { onDelete: "CASCADE" })
     @JoinColumn({ name: "orgConfigId", referencedColumnName: "id" })
     orgConfig: OrgConfig;
 
@@ -20,7 +20,7 @@ export class SimConfig extends BaseEntity {
     @OneToMany(() => Result, (result) => result.simConfig)
     results: Result[];
 
-    @ManyToOne(() => SimSet, (simSet) => simSet.simConfigs, {onDelete: "CASCADE"})
+    @ManyToOne(() => SimSet, (simSet) => simSet.simConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
@@ -43,24 +43,24 @@ export class SimConfig extends BaseEntity {
     @Column({ type: "timestamp", nullable: true })
     end: Date;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     durationSec: number;
 
     @Column()
     days: number;
 
-    @Column({type: "float", nullable: true})
+    @Column({ type: "float", nullable: true })
     avgPerformance: number;
 
-    @Column({type: "float", nullable: true})
+    @Column({ type: "float", nullable: true })
     stdDevPerformance: number;
 
-    @Column({type: "float", nullable: true})
+    @Column({ type: "float", nullable: true })
     entropy: number;
 
     @Column()
     converged: boolean;
 
-    @Column({nullable: false, default: "pending"})
+    @Column({ nullable: false, default: "pending" })
     state: StateType;
 }

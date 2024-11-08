@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColu
 import { Result } from "./result.entity";
 
 @Entity()
-export class StateSpacePoint extends BaseEntity{
+export class StateSpacePoint extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -30,6 +30,4 @@ export class StateSpacePoint extends BaseEntity{
 
     @Column({ type: "json" })
     priorityTensor: number[][][];
-
 }
-
