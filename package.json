@@ -13,10 +13,15 @@
   "license": "MIT",
   "dependencies": {
     "typeorm": "^0.3.20",
-    "typescript": "^5.3.3",
     "aethon-arion-pipeline": "^0.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.14"
+    "@types/node": "^20.11.14",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "typescript": "^5.3.3"
   }
 }
