@@ -4,8 +4,8 @@ import { OrgConfig } from "./org-config.entity";
 import { ConfiguratorParamsDTO } from "aethon-arion-pipeline";
 
 @Entity()
-@Unique(["configuratorName", "configuratorParams"])
-export class ConfiguratorParams extends BaseEntity {
+@Unique(["configuratorName", "data"])
+export class ConfiguratorParams extends BaseEntity implements ConfiguratorParamsDTO {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -20,5 +20,6 @@ export class ConfiguratorParams extends BaseEntity {
     configuratorName: string;
 
     @Column({ type: "json", nullable: true })
-    configuratorParams: ConfiguratorParamsDTO;
+    @Index("DATA")
+    data: any;
 }
