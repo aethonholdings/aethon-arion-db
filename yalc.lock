@@ -1,8 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "aethon-arion-pipeline": {
-      "signature": "f0a79b5281e352edd145276e3ef961bd"
-    }
-  }
-}
