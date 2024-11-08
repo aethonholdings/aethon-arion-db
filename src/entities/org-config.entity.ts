@@ -1,14 +1,26 @@
-import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
-import { ConfiguratorParamsDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParamsDTO, OrgConfigDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParams } from "./configurator-params.entity";
 
 @Entity()
-export class OrgConfig extends BaseEntity {
+export class OrgConfig extends BaseEntity implements OrgConfigDTO {
     @PrimaryGeneratedColumn()
     id: number;
 
     @OneToMany(() => SimConfig, (simConfig) => simConfig.orgConfig)
     simConfigs: SimConfig[];
+
+    @ManyToOne(() => ConfiguratorParams, (configuratorParams) => configuratorParams.orgConfigs, { onDelete: "CASCADE" })
+    @JoinColumn({ name: "configuratorParamId" })
+    orgConfigParams: ConfiguratorParams;
+
+    @Column({ nullable: false })
+    @Index("CONFIGURATORNAME")
+    configuratorName: string;
+
+    @Column({ type: "json", nullable: true })
+    configuratorParams: ConfiguratorParamsDTO;
 
     @Column()
     type: string;
@@ -47,11 +59,4 @@ export class OrgConfig extends BaseEntity {
 
     @Column({ type: "float" })
     incentiveIntensity: number;
-
-    @Column({ nullable: false })
-    @Index("CONFIGURATORNAME")
-    configuratorName: string;
-
-    @Column({ type: "json", nullable: true })
-    configuratorParams: ConfiguratorParamsDTO;
 }

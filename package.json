@@ -11,9 +11,9 @@
   },
   "author": "Konstantinos Dimitriou",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "typeorm": "^0.3.20",
-    "aethon-arion-pipeline": "^0.1.0"
+    "aethon-arion-pipeline": "^0.1.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.14",

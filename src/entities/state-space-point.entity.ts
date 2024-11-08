@@ -1,8 +1,9 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Result } from "./result.entity";
+import { StateSpacePointDTO } from "aethon-arion-pipeline";
 
 @Entity()
-export class StateSpacePoint extends BaseEntity {
+export class StateSpacePoint extends BaseEntity implements StateSpacePointDTO {
     @PrimaryGeneratedColumn()
     id: number;
 

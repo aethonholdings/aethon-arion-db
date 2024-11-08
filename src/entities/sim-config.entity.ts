@@ -2,10 +2,11 @@ import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, Pr
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
 import { SimSet } from "./sim-set.entity";
-import { StateType } from "../types/db.types";
+import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
+import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()
-export class SimConfig extends BaseEntity {
+export class SimConfig extends BaseEntity implements SimConfigDTO {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -24,6 +25,10 @@ export class SimConfig extends BaseEntity {
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
+    @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, { onDelete: "CASCADE" })
+    @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
+    simConfigParams: SimConfigParams;
+
     @Column()
     @Index("SIMSET")
     simSetId: number;
@@ -35,7 +40,7 @@ export class SimConfig extends BaseEntity {
     runCount: number;
 
     @Column()
-    randomStreamType: "static" | "random";
+    randomStreamType: RandomStreamType;
 
     @Column({ type: "timestamp", nullable: true })
     start: Date;

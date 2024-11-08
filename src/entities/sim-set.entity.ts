@@ -1,9 +1,9 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
-import { StateType } from "../types/db.types";
+import { SimSetDTO, StateType } from "aethon-arion-pipeline";
 
 @Entity()
-export class SimSet extends BaseEntity {
+export class SimSet extends BaseEntity implements SimSetDTO {
     @PrimaryGeneratedColumn()
     id: number;
 
