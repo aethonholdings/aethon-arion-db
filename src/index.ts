@@ -6,4 +6,3 @@ export { StateSpacePoint } from "./entities/state-space-point.entity";
 export { SimConfigParams } from "./entities/sim-config-params.entity";
 export { ConfiguratorParams } from "./entities/configurator-params.entity";
 export { ConvergenceTest } from "./entities/convergence-test.entity";
-export { entities } from "./constants/db.constants";

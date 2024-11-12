@@ -1,10 +1,10 @@
-import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ConvergenceTest } from "./convergence-test.entity";
 import { OrgConfig } from "./org-config.entity";
 import { ConfiguratorParamsDTO } from "aethon-arion-pipeline";
 
 @Entity()
-@Unique(["configuratorName", "data"])
+@Unique(["configuratorName", "hash"])
 export class ConfiguratorParams extends BaseEntity implements ConfiguratorParamsDTO {
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,14 +12,17 @@ export class ConfiguratorParams extends BaseEntity implements ConfiguratorParams
     @OneToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.simConfigParams)
     convergenceTests: ConvergenceTest[];
 
-    @OneToMany(() => OrgConfig, (orgConfig) => orgConfig.orgConfigParams)
+    @OneToMany(() => OrgConfig, (orgConfig) => orgConfig.configuratorParams)
     orgConfigs: OrgConfig[];
 
     @Column({ nullable: false })
-    @Index("CONFIGURATORNAME")
+    @Index("CONFIGURATOR_NAME")
     configuratorName: string;
 
     @Column({ type: "json", nullable: true })
-    @Index("DATA")
     data: any;
+
+    @Column({ nullable: false })
+    @Index("HASH")
+    hash: string;
 }

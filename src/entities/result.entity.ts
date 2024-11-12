@@ -24,7 +24,7 @@ export class Result extends BaseEntity implements ResultDTO {
     @Index("SIMSET")
     simSetId: number;
 
-    @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result, { onDelete: "CASCADE" })
+    @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result)
     stateSpace: StateSpacePoint[];
 
     @Column()

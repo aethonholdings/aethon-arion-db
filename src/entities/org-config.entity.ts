@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
-import { ConfiguratorParamsDTO, OrgConfigDTO } from "aethon-arion-pipeline";
+import { OrgConfigDTO } from "aethon-arion-pipeline";
 import { ConfiguratorParams } from "./configurator-params.entity";
 
 @Entity()
@@ -12,15 +12,12 @@ export class OrgConfig extends BaseEntity implements OrgConfigDTO {
     simConfigs: SimConfig[];
 
     @ManyToOne(() => ConfiguratorParams, (configuratorParams) => configuratorParams.orgConfigs, { onDelete: "CASCADE" })
-    @JoinColumn({ name: "configuratorParamId" })
-    orgConfigParams: ConfiguratorParams;
+    @JoinColumn({ name: "configuratorParamsId" })
+    configuratorParams: ConfiguratorParams;
 
     @Column({ nullable: false })
     @Index("CONFIGURATORNAME")
     configuratorName: string;
-
-    @Column({ type: "json", nullable: true })
-    configuratorParams: ConfiguratorParamsDTO;
 
     @Column()
     type: string;

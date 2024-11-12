@@ -4,7 +4,7 @@ import { ConfiguratorParams } from "./configurator-params.entity";
 import { StateType } from "aethon-arion-pipeline";
 
 @Entity()
-@Unique(["simConfigParams", "configuratorParams"])
+@Unique(["simConfigParamsId", "configuratorParamsId"])
 export class ConvergenceTest extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
@@ -19,16 +19,16 @@ export class ConvergenceTest extends BaseEntity {
     @JoinColumn({ name: "configuratorParamsId" })
     configuratorParams: ConfiguratorParams;
 
-    @Column()
+    @Column({default: 0})
     orgConfigCount: number;
 
-    @Column()
+    @Column({default: 0})
     simConfigCount: number;
 
-    @Column()
+    @Column({default: 0})
     resultCount: number;
 
-    @Column()
+    @Column({default: 0})
     dispatchedRuns: number;
 
     @Column({ type: "float", nullable: true })
