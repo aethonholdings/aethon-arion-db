@@ -26,7 +26,7 @@ export class ConfiguratorParams extends BaseEntity implements ConfiguratorParams
     @Column({ type: "json", nullable: true })
     data: ConfiguratorParamData;
 
-    @Column({ nullable: false })
+    @Column()
     @Index("HASH")
     hash: string;
 }
