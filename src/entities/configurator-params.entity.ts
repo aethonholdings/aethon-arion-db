@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ConvergenceTest } from "./convergence-test.entity";
 import { OrgConfig } from "./org-config.entity";
 import { ConfiguratorParamData, ConfiguratorParamsDTO } from "aethon-arion-pipeline";
@@ -14,6 +14,10 @@ export class ConfiguratorParams extends BaseEntity implements ConfiguratorParams
 
     @OneToMany(() => OrgConfig, (orgConfig) => orgConfig.configuratorParams)
     orgConfigs: OrgConfig[];
+
+    @Column({ nullable: false })
+    @Index("MODEL_NAME")
+    modelName: string;
 
     @Column({ nullable: false })
     @Index("CONFIGURATOR_NAME")
