@@ -1,16 +1,16 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { StateSpacePoint } from "./state-space-point.entity";
-import { ConfiguratorParamsDTO, ResultDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParamData, ConfiguratorParamsDTO, ResultDTO } from "aethon-arion-pipeline";
 
 @Entity()
-export class Result extends BaseEntity implements ResultDTO {
+export class Result<T extends ConfiguratorParamData> extends BaseEntity implements ResultDTO<T> {
     @PrimaryGeneratedColumn()
     id: number;
 
     @ManyToOne(() => SimConfig, (simConfig) => simConfig.id, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simConfigId" })
-    simConfig: SimConfig;
+    simConfig: SimConfig<T>;
 
     @Column()
     @Index("SIMCONFIG")
@@ -25,7 +25,7 @@ export class Result extends BaseEntity implements ResultDTO {
     simSetId: number;
 
     @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result)
-    stateSpace: StateSpacePoint[];
+    stateSpace: StateSpacePoint<T>[];
 
     @Column()
     runCount: number;
@@ -78,5 +78,5 @@ export class Result extends BaseEntity implements ResultDTO {
     configuratorName: string;
 
     @Column({ type: "json" })
-    configuratorParams: ConfiguratorParamsDTO;
+    configuratorParams: ConfiguratorParamsDTO<T>;
 }

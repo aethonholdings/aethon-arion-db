@@ -2,32 +2,32 @@ import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, Pr
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
 import { SimSet } from "./sim-set.entity";
-import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
+import { ConfiguratorParamData, RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()
-export class SimConfig extends BaseEntity implements SimConfigDTO {
+export class SimConfig<T extends ConfiguratorParamData> extends BaseEntity implements SimConfigDTO<T> {
     @PrimaryGeneratedColumn()
     id: number;
 
     @ManyToOne(() => OrgConfig, (orgConfig) => orgConfig.id, { onDelete: "CASCADE" })
     @JoinColumn({ name: "orgConfigId", referencedColumnName: "id" })
-    orgConfig: OrgConfig;
+    orgConfig: OrgConfig<T>;
 
     @Column()
     @Index("ORGCONFIG")
     orgConfigId: number;
 
     @OneToMany(() => Result, (result) => result.simConfig)
-    results: Result[];
+    results: Result<T>[];
 
     @ManyToOne(() => SimSet, (simSet) => simSet.simConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
-    simSet: SimSet;
+    simSet: SimSet<T>;
 
     @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
-    simConfigParams: SimConfigParams;
+    simConfigParams: SimConfigParams<T>;
 
     @Column()
     @Index("SIMSET")

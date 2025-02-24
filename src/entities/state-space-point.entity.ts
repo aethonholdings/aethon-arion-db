@@ -1,9 +1,9 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Result } from "./result.entity";
-import { StateSpacePointDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParamData, StateSpacePointDTO } from "aethon-arion-pipeline";
 
 @Entity()
-export class StateSpacePoint extends BaseEntity implements StateSpacePointDTO {
+export class StateSpacePoint<T extends ConfiguratorParamData> extends BaseEntity implements StateSpacePointDTO<T> {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,7 +12,7 @@ export class StateSpacePoint extends BaseEntity implements StateSpacePointDTO {
 
     @ManyToOne(() => Result, (result) => result.id, { onDelete: "CASCADE" })
     @JoinColumn({ name: "resultId" })
-    result: Result;
+    result: Result<T>;
 
     @Column()
     resultId: number;

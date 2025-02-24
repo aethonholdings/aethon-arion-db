@@ -5,15 +5,15 @@ import { ConfiguratorParamData, ConfiguratorParamsDTO } from "aethon-arion-pipel
 
 @Entity()
 @Unique(["configuratorName", "hash"])
-export class ConfiguratorParams extends BaseEntity implements ConfiguratorParamsDTO {
+export class ConfiguratorParams<T extends ConfiguratorParamData> extends BaseEntity implements ConfiguratorParamsDTO<T> {
     @PrimaryGeneratedColumn()
     id: number;
 
     @OneToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.simConfigParams)
-    convergenceTests: ConvergenceTest[];
+    convergenceTests: ConvergenceTest<T>[];
 
     @OneToMany(() => OrgConfig, (orgConfig) => orgConfig.configuratorParams)
-    orgConfigs: OrgConfig[];
+    orgConfigs: OrgConfig<T>[];
 
     @Column({ nullable: false })
     @Index("MODEL_NAME")
@@ -24,7 +24,7 @@ export class ConfiguratorParams extends BaseEntity implements ConfiguratorParams
     configuratorName: string;
 
     @Column({ type: "json", nullable: true })
-    data: ConfiguratorParamData;
+    data: T;
 
     @Column()
     @Index("HASH")
