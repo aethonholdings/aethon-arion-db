@@ -1,14 +1,14 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
-import { ConfiguratorParamData, SimSetDTO, StateType } from "aethon-arion-pipeline";
+import { SimSetDTO, StateType } from "aethon-arion-pipeline";
 
 @Entity()
-export class SimSet<T extends ConfiguratorParamData> extends BaseEntity implements SimSetDTO<T> {
+export class SimSet extends BaseEntity implements SimSetDTO {
     @PrimaryGeneratedColumn()
     id: number;
 
     @OneToMany(() => SimConfig, (simConfig) => simConfig.simSet)
-    simConfigs: SimConfig<T>[];
+    simConfigs: SimConfig[];
 
     @Column({ type: "longtext", nullable: true })
     description: string;
