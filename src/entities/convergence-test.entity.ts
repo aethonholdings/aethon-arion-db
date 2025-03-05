@@ -1,11 +1,11 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { SimConfigParams } from "./sim-config-params.entity";
 import { ConfiguratorParams } from "./configurator-params.entity";
-import { ConvergenceTestDTO, StateType } from "aethon-arion-pipeline";
+import { StateType } from "aethon-arion-pipeline";
 
 @Entity()
 @Unique(["simConfigParams", "configuratorParams"])
-export class ConvergenceTest extends BaseEntity implements ConvergenceTestDTO {
+export class ConvergenceTest extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,11 +1,11 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ConvergenceTest } from "./convergence-test.entity";
 import { SimConfig } from "./sim-config.entity";
-import { RandomStreamType, SimConfigParamsDTO } from "aethon-arion-pipeline";
+import { RandomStreamType } from "aethon-arion-pipeline";
 
 @Entity()
 @Unique(["days", "randomStreamType"])
-export class SimConfigParams extends BaseEntity implements SimConfigParamsDTO {
+export class SimConfigParams extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
