@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, Pr
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
 import { SimSet } from "./sim-set.entity";
-import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
+import { SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()

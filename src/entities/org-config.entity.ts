@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { ConfiguratorParams } from "./configurator-params.entity";
 import { OrgConfigDTO } from "aethon-arion-pipeline";
@@ -51,7 +51,7 @@ export class OrgConfig extends BaseEntity {
     incentiveIntensity: number;
 
     toDTO(): OrgConfigDTO {
-        let tmp: any = {
+        const tmp: any = {
             ...this,
             type: this.configuratorParams.modelName,
             configuratorName: this.configuratorParams.configuratorName,

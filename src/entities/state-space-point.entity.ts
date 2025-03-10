@@ -35,7 +35,7 @@ export class StateSpacePoint extends BaseEntity {
     toDTO(): StateSpacePointDTO {
         return {
             ...this,
-            result: this.result? this.result.toDTO() : null
+            result: this.result ? this.result.toDTO() : null
         } as StateSpacePointDTO;
     }
 }
