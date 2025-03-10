@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Result } from "./result.entity";
+import { StateSpacePointDTO } from "aethon-arion-pipeline";
 
 @Entity()
 export class StateSpacePoint extends BaseEntity {
@@ -30,4 +31,11 @@ export class StateSpacePoint extends BaseEntity {
 
     @Column({ type: "json" })
     priorityTensor: number[][][];
+
+    toDTO(): StateSpacePointDTO {
+        return {
+            ...this,
+            result: this.result? this.result.toDTO() : null
+        } as StateSpacePointDTO;
+    }
 }

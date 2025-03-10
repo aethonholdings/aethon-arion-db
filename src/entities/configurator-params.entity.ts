@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ConvergenceTest } from "./convergence-test.entity";
 import { OrgConfig } from "./org-config.entity";
-import { ConfiguratorParamData } from "aethon-arion-pipeline";
+import { ConfiguratorParamData, ConfiguratorParamsDTO } from "aethon-arion-pipeline";
 
 @Entity()
 @Unique(["configuratorName", "hash"])
@@ -29,4 +29,13 @@ export class ConfiguratorParams extends BaseEntity {
     @Column()
     @Index("HASH")
     hash: string;
+
+    toDTO<T extends ConfiguratorParams>(): ConfiguratorParamsDTO<T> {
+        return {
+            id: this.id,
+            modelName: this.modelName,
+            configuratorName: this.configuratorName,
+            data: this.data
+        };
+    }
 }

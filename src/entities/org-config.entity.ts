@@ -1,6 +1,7 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { ConfiguratorParams } from "./configurator-params.entity";
+import { OrgConfigDTO } from "aethon-arion-pipeline";
 
 @Entity()
 export class OrgConfig extends BaseEntity {
@@ -13,13 +14,6 @@ export class OrgConfig extends BaseEntity {
     @ManyToOne(() => ConfiguratorParams, (configuratorParams) => configuratorParams.orgConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "configuratorParamsId" })
     configuratorParams: ConfiguratorParams;
-
-    @Column({ nullable: false })
-    @Index("CONFIGURATORNAME")
-    configuratorName: string;
-
-    @Column()
-    type: string;
 
     @Column()
     clockTickSeconds: number;
@@ -55,4 +49,18 @@ export class OrgConfig extends BaseEntity {
 
     @Column({ type: "float" })
     incentiveIntensity: number;
+
+    toDTO(): OrgConfigDTO {
+        let tmp: any = {
+            ...this,
+            type: this.configuratorParams.modelName,
+            configuratorName: this.configuratorParams.configuratorName,
+            simConfigs: this.simConfigs
+                ? this.simConfigs.map((simConfig) => {
+                      simConfig.toDTO();
+                  })
+                : null
+        };
+        return tmp as OrgConfigDTO;
+    }
 }

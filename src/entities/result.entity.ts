@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { StateSpacePoint } from "./state-space-point.entity";
-import { ConfiguratorParamData, ConfiguratorParamsDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParamData, ConfiguratorParamsDTO, ResultDTO } from "aethon-arion-pipeline";
 
 @Entity()
 export class Result extends BaseEntity {
@@ -79,4 +79,16 @@ export class Result extends BaseEntity {
 
     @Column({ type: "json" })
     configuratorParams: ConfiguratorParamsDTO<ConfiguratorParamData>;
+
+    toDTO(): ResultDTO {
+        return {
+            ...this,
+            simConfig: this.simConfig ? this.simConfig.toDTO() : null,
+            stateSpace: this.stateSpace
+                ? this.stateSpace.map((stateSpacePoint) => {
+                      return stateSpacePoint.toDTO();
+                  })
+                : null
+        } as ResultDTO;
+    }
 }

@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, Pr
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
 import { SimSet } from "./sim-set.entity";
-import { StateType } from "aethon-arion-pipeline";
+import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()
@@ -28,6 +28,10 @@ export class SimConfig extends BaseEntity {
     @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
     simConfigParams: SimConfigParams;
+
+    @Column()
+    @Index("SIMCONFIGPARAMS")
+    simConfigParamsId: number;
 
     @Column()
     @Index("SIMSET")
@@ -62,4 +66,15 @@ export class SimConfig extends BaseEntity {
 
     @Column({ nullable: false, default: "pending" })
     state: StateType;
+
+    toDTO(): SimConfigDTO {
+        return {
+            ...this,
+            days: this.simConfigParams.days,
+            randomStreamType: this.simConfigParams.randomStreamType,
+            orgConfig: this.orgConfig.toDTO(),
+            results: this.results ? this.results.map((result) => result.toDTO()) : null,
+            simSet: this.simSet.toDTO()
+        } as SimConfigDTO;
+    }
 }
