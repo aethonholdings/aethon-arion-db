@@ -11,7 +11,10 @@ export class OrgConfig extends BaseEntity {
     @OneToMany(() => SimConfig, (simConfig) => simConfig.orgConfig)
     simConfigs: SimConfig[];
 
-    @ManyToOne(() => ConfiguratorParams, (configuratorParams) => configuratorParams.orgConfigs, { onDelete: "CASCADE" })
+    @ManyToOne(() => ConfiguratorParams, (configuratorParams) => configuratorParams.orgConfigs, {
+        onDelete: "CASCADE",
+        eager: true
+    })
     @JoinColumn({ name: "configuratorParamsId" })
     configuratorParams: ConfiguratorParams;
 

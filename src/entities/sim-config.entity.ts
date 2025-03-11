@@ -25,7 +25,10 @@ export class SimConfig extends BaseEntity {
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
-    @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, { onDelete: "CASCADE" })
+    @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, {
+        onDelete: "CASCADE",
+        eager: true
+    })
     @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
     simConfigParams: SimConfigParams;
 
@@ -68,13 +71,12 @@ export class SimConfig extends BaseEntity {
     state: StateType;
 
     toDTO(): SimConfigDTO {
+        if (!this.simConfigParams)
+            throw new Error(`SimConfigParams not found; mapping of SimConfig id:${this.id} to DTO failed`);
         return {
             ...this,
             days: this.simConfigParams.days,
-            randomStreamType: this.simConfigParams.randomStreamType,
-            orgConfig: this.orgConfig.toDTO(),
-            results: this.results ? this.results.map((result) => result.toDTO()) : null,
-            simSet: this.simSet.toDTO()
-        } as SimConfigDTO;
+            randomStreamType: this.simConfigParams.randomStreamType
+        } as any as SimConfigDTO;
     }
 }

@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
-import { SimSetDTO, StateType } from "aethon-arion-pipeline";
+import { SimConfigDTO, SimSetDTO, StateType } from "aethon-arion-pipeline";
 
 @Entity()
 export class SimSet extends BaseEntity {
@@ -31,7 +31,7 @@ export class SimSet extends BaseEntity {
     toDTO(): SimSetDTO {
         return {
             ...this,
-            simConfigs: this.simConfigs ? this.simConfigs.map((simConfig) => simConfig.toDTO()) : null
+            simConfigs: this.simConfigs ? this.simConfigs.map((simConfig: SimConfig) => simConfig.toDTO()) : null
         } as SimSetDTO;
     }
 }
