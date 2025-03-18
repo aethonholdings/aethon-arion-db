@@ -1,6 +1,6 @@
 {
   "name": "aethon-arion-db",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "The Arion project database TypeORM entity class definitions",
   "repository": "github:aethonholdings/aethon-arion-db",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
   "author": "Konstantinos Dimitriou",
   "license": "MIT",
   "peerDependencies": {
-    "aethon-arion-pipeline": "^0.2.0",
+    "aethon-arion-pipeline": "^0.5.0",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {

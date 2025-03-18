@@ -1,7 +1,6 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
-import { SimSet } from "./sim-set.entity";
 import { SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 
@@ -20,10 +19,6 @@ export class SimConfig extends BaseEntity {
 
     @OneToMany(() => Result, (result) => result.simConfig)
     results: Result[];
-
-    @ManyToOne(() => SimSet, (simSet) => simSet.simConfigs, { onDelete: "CASCADE" })
-    @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
-    simSet: SimSet;
 
     @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, {
         onDelete: "CASCADE",

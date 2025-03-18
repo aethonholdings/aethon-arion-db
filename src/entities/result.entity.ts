@@ -20,10 +20,6 @@ export class Result extends BaseEntity {
     @Index("ORGCONFIG")
     orgConfigId: number;
 
-    @Column({ nullable: false })
-    @Index("SIMSET")
-    simSetId: number;
-
     @OneToMany(() => StateSpacePoint, (stateSpacePoint) => stateSpacePoint.result)
     stateSpace: StateSpacePoint[];
 
