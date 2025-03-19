@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ModelParams, SimSetDTO } from "aethon-arion-pipeline";
+import { ModelParamsDTO, SimSetDTO, StateType } from "aethon-arion-pipeline";
 import { OptimiserState } from "./optimiser-state.entity";
 
 @Entity()
@@ -14,10 +14,13 @@ export class SimSet extends BaseEntity {
     modelName: string;
 
     @Column({ type: "json" })
-    modelParams: ModelParams;
+    modelParams: ModelParamsDTO;
+
+    @Column()
+    state: StateType;
 
     @OneToMany(() => OptimiserState, (optimiserState) => optimiserState.simSet)
-    modelStates: OptimiserState[];
+    optimiserStates: OptimiserState[];
 
     toDTO(): SimSetDTO {
         return this as SimSetDTO;

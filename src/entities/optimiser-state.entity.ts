@@ -1,5 +1,5 @@
 import { OptimiserData, StateType } from "aethon-arion-pipeline";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { SimSet } from "./sim-set.entity";
 
 @Entity()
@@ -7,12 +7,18 @@ export class OptimiserState extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => SimSet, (simSet) => simSet.modelStates)
+    @ManyToOne(() => SimSet, (simSet) => simSet.optimiserStates)
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
     @Column({ nullable: false })
-    step: number;
+    stepCount: number;
+
+    @Column({ nullable: false })
+    modelName: string;
+
+    @Column({ nullable: false })
+    optimiserName: string;
 
     @Column({ type: "timestamp" })
     start: Date;
@@ -30,5 +36,5 @@ export class OptimiserState extends BaseEntity {
     status: StateType;
 
     @Column({ type: "json", nullable: true })
-    state: OptimiserData;
+    optimiserData: OptimiserData;
 }
