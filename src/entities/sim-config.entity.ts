@@ -65,6 +65,9 @@ export class SimConfig extends BaseEntity {
     @Column({ nullable: false, default: "pending" })
     state: StateType;
 
+    @Column({ nullable: false, default: false })
+    saveStateSpace: boolean;
+
     toDTO(): SimConfigDTO {
         if (!this.simConfigParams)
             throw new Error(`SimConfigParams not found; mapping of SimConfig id:${this.id} to DTO failed`);
