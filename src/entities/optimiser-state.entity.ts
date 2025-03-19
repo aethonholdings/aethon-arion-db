@@ -7,7 +7,7 @@ export class OptimiserState extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => SimSet, (simSet) => simSet.optimiserStates)
+    @ManyToOne(() => SimSet, (simSet) => simSet.optimiserStates, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
@@ -23,7 +23,7 @@ export class OptimiserState extends BaseEntity {
     @Column({ type: "timestamp" })
     start: Date;
 
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", nullable: true })
     end: Date;
 
     @Column({ nullable: true })
@@ -37,4 +37,7 @@ export class OptimiserState extends BaseEntity {
 
     @Column({ type: "json", nullable: true })
     optimiserData: OptimiserData;
+
+    @Column({ nullable: false })
+    converged: boolean;
 }
