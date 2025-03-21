@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
-import { SimConfigDTO, StateType } from "aethon-arion-pipeline";
+import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()
@@ -30,10 +30,6 @@ export class SimConfig extends BaseEntity {
     @Column()
     @Index("SIMCONFIGPARAMS")
     simConfigParamsId: number;
-
-    @Column()
-    @Index("SIMSET")
-    simSetId: number;
 
     @Column()
     dispatchedRuns: number;
@@ -67,6 +63,12 @@ export class SimConfig extends BaseEntity {
 
     @Column({ nullable: false, default: false })
     saveStateSpace: boolean;
+
+    @Column({ nullable: false })
+    days: number;
+
+    @Column({ nullable: false })
+    randomStreamType: RandomStreamType;
 
     toDTO(): SimConfigDTO {
         if (!this.simConfigParams)

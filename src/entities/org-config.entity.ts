@@ -53,17 +53,7 @@ export class OrgConfig extends BaseEntity {
     @Column({ type: "float" })
     incentiveIntensity: number;
 
-    toDTO(): OrgConfigDTO {
-        const tmp: any = {
-            ...this,
-            type: this.configuratorParams.modelName,
-            configuratorName: this.configuratorParams.configuratorName,
-            simConfigs: this.simConfigs
-                ? this.simConfigs.map((simConfig) => {
-                      simConfig.toDTO();
-                  })
-                : null
-        };
-        return tmp as OrgConfigDTO;
-    }
+    @Column({ nullable: false})
+    type: string;
+
 }

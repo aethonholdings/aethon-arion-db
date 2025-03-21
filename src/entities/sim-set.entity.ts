@@ -1,6 +1,7 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ModelParamsDTO, SimSetDTO, StateType } from "aethon-arion-pipeline";
 import { OptimiserState } from "./optimiser-state.entity";
+import { SimConfigParams } from "./sim-config-params.entity";
 
 @Entity()
 export class SimSet extends BaseEntity {
@@ -25,7 +26,8 @@ export class SimSet extends BaseEntity {
     @OneToMany(() => OptimiserState, (optimiserState) => optimiserState.simSet)
     optimiserStates: OptimiserState[];
 
-    toDTO(): SimSetDTO {
-        return this as SimSetDTO;
-    }
+    @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simSets)
+    @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
+    simConfigParams: SimConfigParams;
+
 }

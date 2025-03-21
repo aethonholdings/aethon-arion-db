@@ -40,7 +40,7 @@ export class ConvergenceTest extends BaseEntity {
     @Column({ type: "float", nullable: true })
     stdDevPerformance: number;
 
-    @Column({ default: 0 })
+    @Column({ nullable: true })
     processingTimeSec: number;
 
     @Column({ nullable: false, default: "pending" })
