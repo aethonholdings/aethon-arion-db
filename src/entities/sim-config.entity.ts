@@ -3,6 +3,7 @@ import { OrgConfig } from "./org-config.entity";
 import { Result } from "./result.entity";
 import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
+import { ConvergenceTest } from "./convergence-test.entity";
 
 @Entity()
 export class SimConfig extends BaseEntity {
@@ -30,6 +31,17 @@ export class SimConfig extends BaseEntity {
     @Column()
     @Index("SIMCONFIGPARAMS")
     simConfigParamsId: number;
+
+    @ManyToOne(() => ConvergenceTest, (convergenceTest) => convergenceTest.simConfigs, {
+        onDelete: "CASCADE",
+        eager: true
+    })
+    @JoinColumn({ name: "convergenceTestId", referencedColumnName: "id" })
+    convergenceTest: ConvergenceTest;
+
+    @Column()
+    @Index("CONVERGENCETEST")
+    convergenceTestId: number;
 
     @Column()
     dispatchedRuns: number;
