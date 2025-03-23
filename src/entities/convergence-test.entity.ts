@@ -53,4 +53,7 @@ export class ConvergenceTest extends BaseEntity {
 
     @Column({ nullable: false, default: "pending" })
     state: StateType;
+
+    @Column({ nullable: false })
+    converged: boolean;
 }
