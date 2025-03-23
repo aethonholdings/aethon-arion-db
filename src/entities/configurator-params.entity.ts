@@ -30,12 +30,6 @@ export class ConfiguratorParams extends BaseEntity {
     @Index("HASH")
     hash: string;
 
-    toDTO<T extends ConfiguratorParams>(): ConfiguratorParamsDTO<T> {
-        return {
-            id: this.id,
-            modelName: this.modelName,
-            configuratorName: this.configuratorName,
-            data: this.data
-        };
-    }
+    @Column()
+    multipleOrgConfigs: boolean;
 }
