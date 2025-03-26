@@ -1,6 +1,7 @@
 import { OptimiserData, StateType } from "aethon-arion-pipeline";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany, JoinTable } from "typeorm";
 import { SimSet } from "./sim-set.entity";
+import { ConvergenceTest } from "./convergence-test.entity";
 
 @Entity()
 export class OptimiserState extends BaseEntity {
@@ -10,6 +11,10 @@ export class OptimiserState extends BaseEntity {
     @ManyToOne(() => SimSet, (simSet) => simSet.optimiserStates, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
+
+    @ManyToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.optimiserStates)
+    @JoinTable()
+    convergenceTests: ConvergenceTest[];
 
     @Column({ nullable: false })
     stepCount: number;
@@ -40,4 +45,7 @@ export class OptimiserState extends BaseEntity {
 
     @Column({ nullable: false })
     converged: boolean;
+
+    @Column({ type: "json", nullable: true })
+    convergenceTestIds: number[];
 }

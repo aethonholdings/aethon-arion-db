@@ -1,8 +1,9 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { SimConfigParams } from "./sim-config-params.entity";
 import { ConfiguratorParams } from "./configurator-params.entity";
 import { StateType } from "aethon-arion-pipeline";
 import { SimConfig } from "./sim-config.entity";
+import { OptimiserState } from "./optimiser-state.entity";
 
 @Entity()
 @Unique(["simConfigParams", "configuratorParams"])
@@ -26,6 +27,9 @@ export class ConvergenceTest extends BaseEntity {
 
     @OneToMany(() => SimConfig, (simConfig) => simConfig.convergenceTest)
     simConfigs: SimConfig[];
+
+    @ManyToMany(() => OptimiserState, (optimiserState) => optimiserState.convergenceTests)
+    optimiserStates: OptimiserState[];
 
     @Column({ default: 0 })
     orgConfigCount: number;
