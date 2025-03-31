@@ -52,12 +52,9 @@ export class ConvergenceTest extends BaseEntity {
     @Column({ type: "float", nullable: true })
     stdDevPerformance: number;
 
-    @Column({ nullable: true })
-    processingTimeSec: number;
-
     @Column({ nullable: false, default: "pending" })
     state: StateType;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, default: false })
     converged: boolean;
 }

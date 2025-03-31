@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, Index, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ConvergenceTest } from "./convergence-test.entity";
 import { OrgConfig } from "./org-config.entity";
-import { ConfiguratorParamData, ConfiguratorParamsDTO } from "aethon-arion-pipeline";
+import { ConfiguratorParamData } from "aethon-arion-pipeline";
 
 @Entity()
 @Unique(["configuratorName", "hash"])

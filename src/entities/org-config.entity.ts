@@ -1,7 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SimConfig } from "./sim-config.entity";
 import { ConfiguratorParams } from "./configurator-params.entity";
-import { OrgConfigDTO } from "aethon-arion-pipeline";
 
 @Entity()
 export class OrgConfig extends BaseEntity {

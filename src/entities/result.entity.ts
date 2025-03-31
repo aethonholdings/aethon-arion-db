@@ -66,8 +66,8 @@ export class Result extends BaseEntity {
     agentCount: number;
 
     @Column({ nullable: false })
-    @Index("ORGCONFIGTYPE")
-    orgConfigType: string;
+    @Index("MODELNAME")
+    modelName: string;
 
     @Column({ nullable: false })
     @Index("CONFIGURATORNAME")
@@ -76,15 +76,4 @@ export class Result extends BaseEntity {
     @Column({ type: "json" })
     configuratorParams: ConfiguratorParamsDTO<ConfiguratorParamData>;
 
-    toDTO(): ResultDTO {
-        return {
-            ...this,
-            simConfig: this.simConfig ? this.simConfig.toDTO() : null,
-            stateSpace: this.stateSpace
-                ? this.stateSpace.map((stateSpacePoint) => {
-                      return stateSpacePoint.toDTO();
-                  })
-                : null
-        } as ResultDTO;
-    }
 }

@@ -46,6 +46,4 @@ export class OptimiserState extends BaseEntity {
     @Column({ nullable: false })
     converged: boolean;
 
-    @Column({ type: "json", nullable: true })
-    convergenceTestIds: number[];
 }

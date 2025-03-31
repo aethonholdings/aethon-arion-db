@@ -24,6 +24,9 @@ export class SimSet extends BaseEntity {
     @Column()
     optimiserName: string;
 
+    @Column()
+    configuratorName: string;
+
     @Column({ type: "json" })
     modelParams: ModelParamsDTO;
 

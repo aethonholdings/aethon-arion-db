@@ -32,10 +32,4 @@ export class StateSpacePoint extends BaseEntity {
     @Column({ type: "json" })
     priorityTensor: number[][][];
 
-    toDTO(): StateSpacePointDTO {
-        return {
-            ...this,
-            result: this.result ? this.result.toDTO() : null
-        } as StateSpacePointDTO;
-    }
 }
