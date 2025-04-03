@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ModelParamsDTO, StateType } from "aethon-arion-pipeline";
+import { ModelParamsDTO, OptimiserParameters, StateType } from "aethon-arion-pipeline";
 import { OptimiserState } from "./optimiser-state.entity";
 import { SimConfigParams } from "./sim-config-params.entity";
 
@@ -36,5 +36,7 @@ export class SimSet extends BaseEntity {
     @Column({ nullable: true })
     currentOptimiserStateId: number;
 
+    @Column({type: "json", nullable: true})
+    optimiserParameters: OptimiserParameters;
 
 }
