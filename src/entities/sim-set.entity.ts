@@ -12,7 +12,7 @@ export class SimSet extends BaseEntity {
     @JoinColumn({ name: "simConfigParamsId", referencedColumnName: "id" })
     simConfigParams: SimConfigParams;
 
-    @OneToMany(() => OptimiserState, (optimiserState) => optimiserState.simSet)
+    @OneToMany(() => OptimiserState, (optimiserState) => optimiserState.simSet, {eager: true})
     optimiserStates: OptimiserState[];
 
     @Column({ type: "longtext", nullable: true })
@@ -28,15 +28,12 @@ export class SimSet extends BaseEntity {
     configuratorName: string;
 
     @Column({ type: "json" })
-    modelParams: ModelParamsDTO;
+    optimiserParams: OptimiserParameters;
 
     @Column()
     state: StateType;
 
     @Column({ nullable: true })
     currentOptimiserStateId: number;
-
-    @Column({type: "json", nullable: true})
-    optimiserParameters: OptimiserParameters;
 
 }

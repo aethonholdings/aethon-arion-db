@@ -12,7 +12,7 @@ export class OptimiserState extends BaseEntity {
     @JoinColumn({ name: "simSetId", referencedColumnName: "id" })
     simSet: SimSet;
 
-    @ManyToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.optimiserStates)
+    @ManyToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.optimiserStates, { eager: true })
     @JoinTable()
     convergenceTests: ConvergenceTest[];
 
@@ -45,5 +45,8 @@ export class OptimiserState extends BaseEntity {
 
     @Column({ nullable: false })
     converged: boolean;
+
+    @Column({ nullable: true })
+    performance: number;
 
 }
