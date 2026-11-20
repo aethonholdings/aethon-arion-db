@@ -20,6 +20,11 @@ export class OrgConfig extends BaseEntity {
     @Column()
     clockTickSeconds: number;
 
+    // 1-based index of the org config within its convergence test; seeds its random draws so that replicate k of
+    // every optimiser point shares the same draws (common random numbers). Null for older records
+    @Column({ nullable: true })
+    replicate: number;
+
     @Column()
     agentCount: number;
 

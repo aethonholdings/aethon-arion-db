@@ -22,6 +22,11 @@ export class SimConfigParams extends BaseEntity {
     @Column()
     days: number;
 
+    // base seed for the random streams of every run under these parameters (0 for "static"; drawn once for
+    // "random"). Null for older records until first dispatch
+    @Column({ nullable: true })
+    seed: number;
+
     @Column()
     randomStreamType: RandomStreamType;
 }
