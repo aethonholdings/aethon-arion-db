@@ -40,16 +40,16 @@ export class OrgConfig extends BaseEntity {
     @Column({ type: "json" })
     reporting: any;
 
-    @Column({ type: "float" })
+    @Column({ type: "double" })
     priorityIntensity: number;
 
-    @Column({ type: "float" })
+    @Column({ type: "double" })
     influenceIntensity: number;
 
-    @Column({ type: "float" })
+    @Column({ type: "double" })
     judgmentIntensity: number;
 
-    @Column({ type: "float" })
+    @Column({ type: "double" })
     incentiveIntensity: number;
 
     @Column({ nullable: false})

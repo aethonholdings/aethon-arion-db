@@ -8,7 +8,7 @@ export class Result extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => SimConfig, (simConfig) => simConfig.id, { onDelete: "CASCADE" })
+    @ManyToOne(() => SimConfig, (simConfig) => simConfig.results, { onDelete: "CASCADE" })
     @JoinColumn({ name: "simConfigId" })
     simConfig: SimConfig;
 
@@ -29,13 +29,23 @@ export class Result extends BaseEntity {
     @Column()
     nodeId: string;
 
+    // the dispatch ticket this result answers; unique so that a re-posted result is idempotent. Null for
+    // results recorded before run tickets were introduced
+    @Column({ nullable: true })
+    @Index("RUN", { unique: true })
+    runId: number;
+
+    // true when the result arrived after its simConfig had converged; stored, but excluded from statistics
+    @Column({ nullable: false, default: false })
+    late: boolean;
+
     @Column({ type: "timestamp" })
     start: Date;
 
     @Column({ type: "timestamp" })
     end: Date;
 
-    @Column()
+    @Column({ type: "double" })
     durationSec: number;
 
     @Column()
@@ -56,10 +66,10 @@ export class Result extends BaseEntity {
     @Column({ type: "json" })
     reporting: number[];
 
-    @Column({ type: "float" })
+    @Column({ type: "double" })
     priorityIntensity: number;
 
-    @Column({ type: "float" })
+    @Column({ type: "double", nullable: true })
     performance: number;
 
     @Column({ nullable: false })

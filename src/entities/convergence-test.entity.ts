@@ -46,10 +46,10 @@ export class ConvergenceTest extends BaseEntity {
     @Column({ default: 0 })
     dispatchedRuns: number;
 
-    @Column({ type: "float", nullable: true })
+    @Column({ type: "double", nullable: true })
     avgPerformance: number;
 
-    @Column({ type: "float", nullable: true })
+    @Column({ type: "double", nullable: true })
     stdDevPerformance: number;
 
     @Column({ nullable: false, default: "pending" })

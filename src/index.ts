@@ -7,3 +7,6 @@ export { SimConfigParams } from "./entities/sim-config-params.entity";
 export { ConfiguratorParams } from "./entities/configurator-params.entity";
 export { ConvergenceTest } from "./entities/convergence-test.entity";
 export { OptimiserState } from "./entities/optimiser-state.entity";
+export { Run } from "./entities/run.entity";
+export { entities } from "./entities";
+export { migrations } from "./migrations";

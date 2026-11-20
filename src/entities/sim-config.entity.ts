@@ -4,13 +4,16 @@ import { Result } from "./result.entity";
 import { RandomStreamType, SimConfigDTO, StateType } from "aethon-arion-pipeline";
 import { SimConfigParams } from "./sim-config-params.entity";
 import { ConvergenceTest } from "./convergence-test.entity";
+import { Run } from "./run.entity";
 
 @Entity()
+// supports the dispatch query: next unconverged simConfig ordered by convergenceTestId, id
+@Index("DISPATCH", ["converged", "convergenceTestId", "id"])
 export class SimConfig extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => OrgConfig, (orgConfig) => orgConfig.id, { onDelete: "CASCADE" })
+    @ManyToOne(() => OrgConfig, (orgConfig) => orgConfig.simConfigs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "orgConfigId", referencedColumnName: "id" })
     orgConfig: OrgConfig;
 
@@ -20,6 +23,9 @@ export class SimConfig extends BaseEntity {
 
     @OneToMany(() => Result, (result) => result.simConfig)
     results: Result[];
+
+    @OneToMany(() => Run, (run) => run.simConfig)
+    runs: Run[];
 
     @ManyToOne(() => SimConfigParams, (simConfigParams) => simConfigParams.simConfigs, {
         onDelete: "CASCADE",
@@ -55,16 +61,16 @@ export class SimConfig extends BaseEntity {
     @Column({ type: "timestamp", nullable: true })
     end: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: "double", nullable: true })
     durationSec: number;
 
-    @Column({ type: "float", nullable: true })
+    @Column({ type: "double", nullable: true })
     avgPerformance: number;
 
-    @Column({ type: "float", nullable: true })
+    @Column({ type: "double", nullable: true })
     stdDevPerformance: number;
 
-    @Column({ type: "float", nullable: true })
+    @Column({ type: "double", nullable: true })
     entropy: number;
 
     @Column({ nullable: false, default: false })

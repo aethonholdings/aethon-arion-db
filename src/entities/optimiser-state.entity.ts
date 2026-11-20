@@ -31,7 +31,7 @@ export class OptimiserState extends BaseEntity {
     @Column({ type: "timestamp", nullable: true })
     end: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: "double", nullable: true })
     durationSec: number;
 
     @Column({ nullable: true })
@@ -46,7 +46,7 @@ export class OptimiserState extends BaseEntity {
     @Column({ nullable: false })
     converged: boolean;
 
-    @Column({ nullable: true })
+    @Column({ type: "double", nullable: true })
     performance: number;
 
 }

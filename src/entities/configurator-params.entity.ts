@@ -9,7 +9,7 @@ export class ConfiguratorParams extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.simConfigParams)
+    @OneToMany(() => ConvergenceTest, (convergenceTest) => convergenceTest.configuratorParams)
     convergenceTests: ConvergenceTest[];
 
     @OneToMany(() => OrgConfig, (orgConfig) => orgConfig.configuratorParams)
@@ -18,6 +18,10 @@ export class ConfiguratorParams extends BaseEntity {
     @Column({ nullable: false })
     @Index("MODEL_NAME")
     modelName: string;
+
+    // version of the model implementation the parameters were evaluated with; null for pre-versioning records
+    @Column({ nullable: true })
+    modelVersion: string;
 
     @Column({ nullable: false })
     @Index("CONFIGURATOR_NAME")
