@@ -25,6 +25,10 @@ export class OrgConfig extends BaseEntity {
     @Column({ nullable: true })
     replicate: number;
 
+    // model-specific diagnostics computed by the configurator (e.g. C1 influence stability and consensus time)
+    @Column({ type: "json", nullable: true })
+    diagnostics: any;
+
     @Column()
     agentCount: number;
 
