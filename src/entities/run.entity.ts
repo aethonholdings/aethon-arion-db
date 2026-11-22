@@ -33,4 +33,12 @@ export class Run extends BaseEntity {
 
     @Column({ nullable: true })
     resultId: number;
+
+    // set when the node reports that the run failed (e.g. the simulation threw); a simConfig whose runs keep failing
+    // is marked failed instead of being dispatched forever
+    @Column({ type: "timestamp", nullable: true })
+    failedAt: Date;
+
+    @Column({ type: "text", nullable: true })
+    error: string;
 }
