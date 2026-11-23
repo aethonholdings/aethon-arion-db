@@ -3,6 +3,7 @@ import { RunTicketsDoublePrecision1795205635423 } from "./1795205635423-RunTicke
 import { CommonRandomNumbers1795300000000 } from "./1795300000000-CommonRandomNumbers";
 import { OrgConfigDiagnostics1795400000000 } from "./1795400000000-OrgConfigDiagnostics";
 import { RunFailures1795500000000 } from "./1795500000000-RunFailures";
+import { NodeAuth1795600000000 } from "./1795600000000-NodeAuth";
 
 /** Ordered list of all aethon-arion-db migrations, for TypeORM `migrations` configuration. */
-export const migrations: any[] = [Baseline1795204842990, RunTicketsDoublePrecision1795205635423, CommonRandomNumbers1795300000000, OrgConfigDiagnostics1795400000000, RunFailures1795500000000];
+export const migrations: any[] = [Baseline1795204842990, RunTicketsDoublePrecision1795205635423, CommonRandomNumbers1795300000000, OrgConfigDiagnostics1795400000000, RunFailures1795500000000, NodeAuth1795600000000];

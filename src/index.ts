@@ -8,5 +8,7 @@ export { ConfiguratorParams } from "./entities/configurator-params.entity";
 export { ConvergenceTest } from "./entities/convergence-test.entity";
 export { OptimiserState } from "./entities/optimiser-state.entity";
 export { Run } from "./entities/run.entity";
+export { User } from "./entities/user.entity";
+export { AuthorisedNode } from "./entities/authorised-node.entity";
 export { entities } from "./entities";
 export { migrations } from "./migrations";
