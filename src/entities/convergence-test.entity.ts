@@ -34,6 +34,11 @@ export class ConvergenceTest extends BaseEntity {
     @Column({ default: 0 })
     orgConfigCount: number;
 
+    // minimum org configs the test must run, set by optimisers that need more than the server default (e.g. a control
+    // experiment comparing two groups); the largest requirement of the optimiser states using the test
+    @Column({ type: "int", nullable: true })
+    requiredOrgConfigs: number | null;
+
     @Column({ default: 0 })
     simConfigCount: number;
 
