@@ -10,5 +10,6 @@ export { OptimiserState } from "./entities/optimiser-state.entity";
 export { Run } from "./entities/run.entity";
 export { User } from "./entities/user.entity";
 export { AuthorisedNode } from "./entities/authorised-node.entity";
+export { NodeProcess } from "./entities/node-process.entity";
 export { entities } from "./entities";
 export { migrations } from "./migrations";

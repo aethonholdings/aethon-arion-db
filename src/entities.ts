@@ -1,6 +1,7 @@
 import { SimConfig } from "./entities/sim-config.entity";
 import { User } from "./entities/user.entity";
 import { AuthorisedNode } from "./entities/authorised-node.entity";
+import { NodeProcess } from "./entities/node-process.entity";
 import { OrgConfig } from "./entities/org-config.entity";
 import { Result } from "./entities/result.entity";
 import { SimSet } from "./entities/sim-set.entity";
@@ -24,5 +25,6 @@ export const entities = [
     OptimiserState,
     Run,
     User,
-    AuthorisedNode
+    AuthorisedNode,
+    NodeProcess
 ];
