@@ -41,4 +41,13 @@ export class Run extends BaseEntity {
 
     @Column({ type: "text", nullable: true })
     error: string;
+
+    // the run is the dispatched node's until then; its heartbeats renew it. An expired run without a result is
+    // handed out again (same runIndex, so the same random streams) instead of a new run
+    @Column({ type: "timestamp", nullable: true })
+    leaseExpiresAt: Date | null;
+
+    // times the run was handed out again after its lease expired
+    @Column({ type: "int", default: 0 })
+    reissueCount: number;
 }

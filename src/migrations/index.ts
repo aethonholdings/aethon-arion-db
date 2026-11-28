@@ -6,6 +6,7 @@ import { RunFailures1795500000000 } from "./1795500000000-RunFailures";
 import { NodeAuth1795600000000 } from "./1795600000000-NodeAuth";
 import { RequiredOrgConfigs1795700000000 } from "./1795700000000-RequiredOrgConfigs";
 import { NodeProcesses1795800000000 } from "./1795800000000-NodeProcesses";
+import { RunLeases1795900000000 } from "./1795900000000-RunLeases";
 
 /** Ordered list of all aethon-arion-db migrations, for TypeORM `migrations` configuration. */
-export const migrations: any[] = [Baseline1795204842990, RunTicketsDoublePrecision1795205635423, CommonRandomNumbers1795300000000, OrgConfigDiagnostics1795400000000, RunFailures1795500000000, NodeAuth1795600000000, RequiredOrgConfigs1795700000000, NodeProcesses1795800000000];
+export const migrations: any[] = [Baseline1795204842990, RunTicketsDoublePrecision1795205635423, CommonRandomNumbers1795300000000, OrgConfigDiagnostics1795400000000, RunFailures1795500000000, NodeAuth1795600000000, RequiredOrgConfigs1795700000000, NodeProcesses1795800000000, RunLeases1795900000000];
